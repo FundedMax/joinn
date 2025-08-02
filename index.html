@@ -132,15 +132,29 @@
 
         /* Hero Section */
         .hero {
-            text-align: center;
-            padding: 190px 0 80px;
-            position: relative;
-            overflow: hidden;
-            background-image: url('bghero.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
+    text-align: center;
+    padding: 190px 0 80px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('bghero.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* Tambahkan ini untuk mobile */
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+* {
+    max-width: 100%;
+}
+
+.container {
+    overflow-x: hidden;
+}
 
         .hero::before {
             content: "";
@@ -395,20 +409,27 @@
         
         /* --- CSS BARU untuk Swiper di Feature Card --- */
         .feature-swiper-container {
-            width: 100%;
-            height: 330px; /* PERBAIKAN: Tinggi ditambah agar gambar tidak terpotong */
-            margin-bottom: 20px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            background-color: #f0f0f0; /* Menambah background untuk mode 'contain' */
-        }
-        
-        .feature-swiper-container .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* PERBAIKAN: Mengubah 'cover' menjadi 'contain' */
-        }
+    width: 100%;
+    height: auto; /* Ubah dari fixed height */
+    min-height: 200px; /* Tinggi minimum */
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background-color: #f8fafc;
+}
+
+.feature-swiper-container .swiper-slide {
+    height: auto; /* Biarkan slide menyesuaikan konten */
+}
+
+.feature-swiper-container .swiper-slide img {
+    width: 100%;
+    height: auto; /* Ubah dari 100% ke auto */
+    object-fit: cover; /* Ubah kembali ke cover untuk tidak ada space */
+    display: block;
+    border-radius: 4px;
+}
         
         .feature-swiper-container .swiper-button-next,
         .feature-swiper-container .swiper-button-prev {
@@ -969,7 +990,7 @@
 
         .accordion-content.open {
             padding: 0 24px 24px 24px;
-            max-height: 200px;
+            max-height: none;
             opacity: 1;
         }
 
@@ -1343,7 +1364,25 @@
         }
 
         /* Responsive */
-       @media (max-width: 768px) {
+       @media (max-width: 390px) {
+    .hero {
+        padding: 160px 0 60px;
+        background-size: cover;
+        background-position: center top;
+    }
+    
+    .feature-swiper-container {
+        min-height: 180px;
+    }
+    
+    .hero-logo {
+        width: 20vw;
+        max-width: 100px;
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 768px) {
     body {
         padding-top: 0;
     }
@@ -1458,6 +1497,22 @@
         #particles-js canvas {
             opacity: 0.2;
         }
+        
+        .pricing-section,
+.pricing-card,
+.container {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+body, html {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.section {
+    overflow: visible !important;
+}
     </style>
 
     <script type="application/ld+json">
